@@ -1,46 +1,68 @@
 /**
- * Cloudflare Worker  |  Proxy → Google Gemini API
- * 把 API-Key 藏在服务端，前端拿不到。
+ * Cloudflare Worker to proxy requests to the Google Gemini API.
+ * This updated script correctly handles CORS preflight (OPTIONS) requests
+ * and gracefully handles other methods like GET.
  */
 export default {
-  async fetch(request, env) {
-    // ===== ① CORS 头，每次都要带 =====
-    const cors = {
-      'Access-Control-Allow-Origin': 'https://imgcaption.com',           // TODO: 生产环境写成 https://你的域名
-      'Access-Control-Allow-Methods': 'POST,OPTIONS',
+  async fetch(request, env, ctx) {
+    // --- CORS Headers ---
+    // These headers allow your frontend application to communicate with this Worker.
+    // This has been updated to match the domain from your response headers.
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': 'https://imgcaption.com',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
-    // ===== ② 预检请求必须先放行 =====
+    // 1. Handle CORS Preflight Requests (OPTIONS)
+    // The browser sends this automatically before a POST request to check permissions.
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: cors });
-    }
-
-    // ===== ③ 只接受 POST，其它一律 405 =====
-    if (request.method !== 'POST') {
-      return new Response('Expected POST request', { status: 405, headers: cors });
-    }
-
-    try {
-      const body = await request.json();
-
-      const url =
-        `https://generativelanguage.googleapis.com/v1beta/models/` +
-        `gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
-
-      const resp = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders,
       });
-
-      const text = await resp.text();            // 先拿文本，成功失败都能读
-      return new Response(text, {
-        status: resp.status,
-        headers: { ...cors, 'Content-Type': 'application/json' },
-      });
-    } catch (err) {
-      return new Response(`Worker error: ${err}`, { status: 500, headers: cors });
     }
+
+    // 2. Handle API Proxy Requests (POST)
+    if (request.method === 'POST') {
+      try {
+        const requestBody = await request.json();
+        const googleApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+
+        const googleResponse = await fetch(googleApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody),
+        });
+
+        if (!googleResponse.ok) {
+          const errorText = await googleResponse.text();
+          return new Response(`Error from Google API: ${errorText}`, { 
+            status: googleResponse.status,
+            headers: corsHeaders 
+          });
+        }
+
+        const googleResponseBody = await googleResponse.json();
+        return new Response(JSON.stringify(googleResponseBody), {
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+          },
+        });
+
+      } catch (error) {
+        return new Response(`Worker error: ${error.message}`, { 
+          status: 500,
+          headers: corsHeaders
+        });
+      }
+    }
+
+    // 3. Handle other requests (like GET for favicon) gracefully
+    return new Response('This worker only accepts POST requests for the API.', {
+      status: 405, // Method Not Allowed
+      headers: corsHeaders,
+    });
   },
 };
