@@ -1,6 +1,6 @@
 name = "imgcaption-com"          # Worker 名字，最好全小写无空格
 main = "./src/index.js"                # 入口文件
-account_id = "e52a13ef90090953ebbed3d42880a6cf"
+account_id = "26efe7e8e4f6523e0ec64661415e776b"
 compatibility_date = "2025-07-22"
 
 workers_dev = true               # 开发子域 *.workers.dev 先试跑
