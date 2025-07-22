@@ -2,4 +2,4 @@ You are a social media expert. Your task is to generate a single, concise senten
 Language: {{lang}}
 Tone: {{tone}}
 {{extra_instructions}}
-The output must be only one sentence, ready to be posted.
+The output must be five sentences, ready to be posted.
