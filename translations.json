@@ -1,5 +1,10 @@
 {
     "en": {
+        "otherToolsTitle": "Other Tools",
+        "videoToolTitle":"Circle Video Cropper",
+        "videoToolDesc":"Easily crop any video into a perfect circle online. Free, instant, and secure. Ideal for animated profile pictures and social media content.",
+        "circlecropimageToolTitle":"Circle Crop Image",
+        "circlecropimageToolDesc":"Easily crop any image into a perfect circle online. Free, instant, and secure. Ideal for profile pictures, logos, and design projects.",
         "siteName": "AI Image Caption",
         "pageTitle": "AI Image Caption Generator - Free, Multi-language Social Media Tool",
         "metaDescription": "Use AI to generate free descriptions for images on social media, product pages, and blogs. Supports multiple languages like English and Chinese, and various tones like humorous and accurate.",
@@ -252,8 +257,13 @@
     "infoAltRightBloggerDesc": "高级功能不限量使用。",
     "infoAltThreadCreator": "ThreadCreator图片标题生成器",
     "infoAltThreadCreatorDesc": "专为X平台（原Twitter）长贴设计的文案生成工具。",
-    "infoAltFooter": "每款工具都有独特优势，欢迎多试用，找到最适合你的那一款。"
- 
+    "infoAltFooter": "每款工具都有独特优势，欢迎多试用，找到最适合你的那一款。",
+    "otherToolsTitle": "其他工具",
+    "videoToolTitle": "视频圆形剪辑",
+    "videoToolDesc": "轻松在线将任意视频裁剪为完美圆形。免费、极速、安全。非常适合制作动态头像和社交媒体内容。",
+    "circlecropimageToolTitle": "图片圆形裁剪",
+    "circlecropimageToolDesc": "轻松在线将任意图片裁剪为完美圆形。免费、极速、安全。非常适合头像、Logo 和设计项目。"
+
     },
     "es": {
         "siteName": "Leyenda de Imagen AI",
@@ -380,7 +390,12 @@
     "infoAltRightBloggerDesc": "Funciones avanzadas y acceso ilimitado.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "Ideal para hilos de Twitter.",
-    "infoAltFooter": "Cada herramienta tiene sus propias ventajas. Prueba varias y elige la que mejor se adapte a ti."
+    "infoAltFooter": "Cada herramienta tiene sus propias ventajas. Prueba varias y elige la que mejor se adapte a ti.",
+    "otherToolsTitle": "Otras herramientas",
+    "videoToolTitle": "Recortador de Video en Círculo",
+    "videoToolDesc": "Recorta fácilmente cualquier video en un círculo perfecto en línea. Gratis, instantáneo y seguro. Ideal para fotos de perfil animadas y contenido en redes sociales.",
+    "circlecropimageToolTitle": "Recortar imagen en círculo",
+    "circlecropimageToolDesc": "Recorta fácilmente cualquier imagen en un círculo perfecto en línea. Gratis, instantáneo y seguro. Ideal para fotos de perfil, logotipos y proyectos de diseño."
   
     },
     "pt": {
@@ -508,7 +523,12 @@
     "infoAltRightBloggerDesc": "Recursos avançados e acesso ilimitado.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "Especialista em legendas para threads do X (Twitter).",
-    "infoAltFooter": "Cada ferramenta tem seus diferenciais. Explore e encontre a ideal para você."
+    "infoAltFooter": "Cada ferramenta tem seus diferenciais. Explore e encontre a ideal para você.",
+    "otherToolsTitle": "Outras Ferramentas",
+    "videoToolTitle": "Cortador de Vídeo em Círculo",
+    "videoToolDesc": "Recorte facilmente qualquer vídeo em um círculo perfeito online. Grátis, instantâneo e seguro. Ideal para fotos de perfil animadas e conteúdos de redes sociais.",
+    "circlecropimageToolTitle": "Cortar Imagem em Círculo",
+    "circlecropimageToolDesc": "Recorte facilmente qualquer imagem em um círculo perfeito online. Grátis, instantâneo e seguro. Ideal para fotos de perfil, logotipos e projetos de design."
   
     },
     "ru": {
@@ -636,7 +656,12 @@
     "infoAltRightBloggerDesc": "Расширенный функционал, безлимитный доступ.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "Специализация — подписи для тредов в X (Twitter).",
-    "infoAltFooter": "У каждого инструмента есть свои плюсы — протестируйте и выберите лучший для себя."
+    "infoAltFooter": "У каждого инструмента есть свои плюсы — протестируйте и выберите лучший для себя.",
+    "otherToolsTitle": "Другие инструменты",
+    "videoToolTitle": "Обрезка видео в круг",
+    "videoToolDesc": "Легко обрежьте любое видео в идеальный круг онлайн. Бесплатно, мгновенно и безопасно. Идеально для анимированных аватаров и контента для соцсетей.",
+    "circlecropimageToolTitle": "Обрезка изображения в круг",
+    "circlecropimageToolDesc": "Легко обрежьте любое изображение в идеальный круг онлайн. Бесплатно, мгновенно и безопасно. Идеально для аватаров, логотипов и дизайнерских проектов."
   
     },
     "de": {
@@ -764,7 +789,12 @@
     "infoAltRightBloggerDesc": "Unbegrenzter Zugang & Profi-Funktionen.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "Speziell für Threads auf X (Twitter).",
-    "infoAltFooter": "Jedes Tool hat eigene Stärken. Finden Sie die für Sie passende Lösung."
+    "infoAltFooter": "Jedes Tool hat eigene Stärken. Finden Sie die für Sie passende Lösung.",
+    "otherToolsTitle": "Weitere Tools",
+    "videoToolTitle": "Video-Kreis-Zuschneider",
+    "videoToolDesc": "Schneide jedes Video einfach online zu einem perfekten Kreis zu. Kostenlos, sofort und sicher. Ideal für animierte Profilbilder und Social-Media-Inhalte.",
+    "circlecropimageToolTitle": "Bild im Kreis zuschneiden",
+    "circlecropimageToolDesc": "Schneide jedes Bild ganz einfach online zu einem perfekten Kreis zu. Kostenlos, sofort und sicher. Ideal für Profilbilder, Logos und Designprojekte."
   
     },
     "fr": {
@@ -892,7 +922,12 @@
     "infoAltRightBloggerDesc": "Fonctionnalités avancées et accès illimité.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "Idéal pour les threads Twitter.",
-    "infoAltFooter": "Chaque outil a ses atouts. Explorez et trouvez celui qui vous convient."
+    "infoAltFooter": "Chaque outil a ses atouts. Explorez et trouvez celui qui vous convient.",
+    "otherToolsTitle": "Autres outils",
+    "videoToolTitle": "Rogner une vidéo en cercle",
+    "videoToolDesc": "Recadrez facilement n'importe quelle vidéo en cercle parfait en ligne. Gratuit, instantané et sécurisé. Idéal pour les photos de profil animées et les contenus sur les réseaux sociaux.",
+    "circlecropimageToolTitle": "Rogner une image en cercle",
+    "circlecropimageToolDesc": "Recadrez facilement n'importe quelle image en cercle parfait en ligne. Gratuit, instantané et sécurisé. Idéal pour les photos de profil, logos et projets de design."
  
     },
     "ja": {
@@ -1020,7 +1055,12 @@
     "infoAltRightBloggerDesc": "高機能・無制限で使えるサービス。",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "X（旧Twitter）スレッド向けのキャプション生成。",
-    "infoAltFooter": "各ツールごとに特徴があるので、用途に合わせて選択してください。"
+    "infoAltFooter": "各ツールごとに特徴があるので、用途に合わせて選択してください。",
+    "otherToolsTitle": "その他のツール",
+    "videoToolTitle": "動画円形トリミング",
+    "videoToolDesc": "あらゆる動画をオンラインで簡単に円形にトリミング。無料、即時、安全。アニメーションプロフィール画像やSNSコンテンツに最適。",
+    "circlecropimageToolTitle": "円形画像トリミング",
+    "circlecropimageToolDesc": "あらゆる画像をオンラインで簡単に円形にトリミング。無料、即時、安全。プロフィール画像、ロゴ、デザインプロジェクトに最適。"
   
     },
     "ko": {
@@ -1148,7 +1188,12 @@
     "infoAltRightBloggerDesc": "고급 기능과 무제한 사용.",
     "infoAltThreadCreator": "ThreadCreator Image Caption Generator",
     "infoAltThreadCreatorDesc": "X(구 트위터) 스레드용 설명 특화.",
-    "infoAltFooter": "각 도구마다 장점이 다르니 직접 써보고 골라보세요."
+    "infoAltFooter": "각 도구마다 장점이 다르니 직접 써보고 골라보세요.",
+    "otherToolsTitle": "기타 도구",
+    "videoToolTitle": "원형 비디오 자르기",
+    "videoToolDesc": "어떤 비디오든 온라인에서 손쉽게 완벽한 원형으로 자르세요. 무료, 즉시, 안전. 애니메이션 프로필 사진과 소셜 미디어 콘텐츠에 이상적입니다.",
+    "circlecropimageToolTitle": "원형 이미지 자르기",
+    "circlecropimageToolDesc": "어떤 이미지든 온라인에서 쉽게 완벽한 원형으로 자르세요. 무료, 즉시, 안전. 프로필 사진, 로고, 디자인 작업에 적합합니다."
  
     }
 }
