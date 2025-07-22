@@ -1,68 +1,46 @@
 /**
- * Cloudflare Worker to proxy requests to the Google Gemini API.
- * This script securely adds the API key on the server-side.
+ * Cloudflare Worker  |  Proxy → Google Gemini API
+ * 把 API-Key 藏在服务端，前端拿不到。
  */
 export default {
-  async fetch(request, env, ctx) {
-    // 1. We only want to handle POST requests.
-    if (request.method !== 'POST') {
-      return new Response('Expected POST request', { status: 405 });
-    }
-
-    // 2. Set up CORS headers to allow requests from your GitHub Pages domain.
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*', // For testing. For production, replace '*' with your GitHub Pages URL.
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  async fetch(request, env) {
+    // ===== ① CORS 头，每次都要带 =====
+    const cors = {
+      'Access-Control-Allow-Origin': '*',           // TODO: 生产环境写成 https://你的域名
+      'Access-Control-Allow-Methods': 'POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
-    // Handle preflight requests for CORS
+    // ===== ② 预检请求必须先放行 =====
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+      return new Response(null, { headers: cors });
+    }
+
+    // ===== ③ 只接受 POST，其它一律 405 =====
+    if (request.method !== 'POST') {
+      return new Response('Expected POST request', { status: 405, headers: cors });
     }
 
     try {
-      // 3. Get the request body from the frontend.
-      const requestBody = await request.json();
+      const body = await request.json();
 
-      // 4. Construct the URL for the actual Google API.
-      const googleApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+      const url =
+        `https://generativelanguage.googleapis.com/v1beta/models/` +
+        `gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
-      // 5. Make the request to the Google API, forwarding the body.
-      const googleResponse = await fetch(googleApiUrl, {
+      const resp = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
       });
 
-      // 6. Check if the request to Google was successful.
-      if (!googleResponse.ok) {
-        // If not, pass the error response back to the frontend.
-        const errorText = await googleResponse.text();
-        return new Response(`Error from Google API: ${errorText}`, { 
-          status: googleResponse.status,
-          headers: corsHeaders 
-        });
-      }
-
-      // 7. Get the response from Google.
-      const googleResponseBody = await googleResponse.json();
-
-      // 8. Send the response from Google back to the frontend.
-      return new Response(JSON.stringify(googleResponseBody), {
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/json',
-        },
+      const text = await resp.text();            // 先拿文本，成功失败都能读
+      return new Response(text, {
+        status: resp.status,
+        headers: { ...cors, 'Content-Type': 'application/json' },
       });
-
-    } catch (error) {
-      return new Response(`Worker error: ${error.message}`, { 
-        status: 500,
-        headers: corsHeaders
-      });
+    } catch (err) {
+      return new Response(`Worker error: ${err}`, { status: 500, headers: cors });
     }
   },
 };
