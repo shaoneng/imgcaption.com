@@ -14,7 +14,7 @@ const app = {
         // IMPORTANT: API_KEY is REMOVED from the frontend for security.
         // It should be handled by a backend proxy (like a Cloudflare Worker).
         // This URL should point to your proxy.
-        API_URL: "https://imgcaption-com.pages.dev", // <-- Replace with your actual Cloudflare Worker URL
+        API_URL: "https://imgcaption-com.shaoneng-wu.workers.dev", // <-- Replace with your actual Cloudflare Worker URL
         FLAGS: { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', ru: '🇷🇺', de: '🇩🇪', fr: '🇫🇷', ja: '🇯🇵', ko: '🇰🇷', zh: '🇨🇳' },
     },
 
