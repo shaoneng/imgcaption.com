@@ -14,7 +14,7 @@ const app = {
         // IMPORTANT: API_KEY is REMOVED from the frontend for security.
         // It should be handled by a backend proxy (like a Cloudflare Worker).
         // This URL should point to your proxy.
-        API_URL: "https://imgcaption-com.shaoneng-wu.workers.dev", // <-- Replace with your actual Cloudflare Worker URL
+        API_URL: "https://api.imgcaption.com", // <-- Replace with your actual Cloudflare Worker URL
         FLAGS: { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', ru: '🇷🇺', de: '🇩🇪', fr: '🇫🇷', ja: '🇯🇵', ko: '🇰🇷', zh: '🇨🇳' },
     },
 
@@ -290,7 +290,10 @@ const app = {
         const payload = {
             contents: [{
                 role: "user",
-                parts: [{ text: prompt }, { inlineData: { mimeType: this.state.imageFile.type, data: this.state.imageBase64 } }]
+                parts: [
+                    { text: prompt }, 
+                    { inlineData: { 
+                        mimeType: this.state.imageFile.type, data: this.state.imageBase64 } }]
             }],
         };
 

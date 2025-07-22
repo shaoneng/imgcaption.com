@@ -1,3 +1,13 @@
-name  = "imgcaption-com"
-main  = "src/index.js"            # 文件路径对上
+name = "imgcaption-com"          # Worker 名字，最好全小写无空格
+main = "./src/index.js"                # 入口文件
+account_id = "e52a13ef90090953ebbed3d42880a6cf"
 compatibility_date = "2025-07-22"
+
+workers_dev = true               # 开发子域 *.workers.dev 先试跑
+routes = ["https://api.imgcaption.com/*" ]  # 绑定自定义域
+
+
+
+# 环境变量不要写死在文件里！
+[vars]
+# 这里放公开不敏感变量；私钥类用 wrangler secret
