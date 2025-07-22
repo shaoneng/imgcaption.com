@@ -6,7 +6,7 @@ export default {
   async fetch(request, env) {
     // ===== ① CORS 头，每次都要带 =====
     const cors = {
-      'Access-Control-Allow-Origin': 'https://imgcaption.com/',           // TODO: 生产环境写成 https://你的域名
+      'Access-Control-Allow-Origin': 'https://imgcaption.com',           // TODO: 生产环境写成 https://你的域名
       'Access-Control-Allow-Methods': 'POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
