@@ -11,11 +11,10 @@
 const app = {
     // --- CONFIGURATION ---
     config: {
-        API_KEY: "AIzaSyASxarnJCMXzh91YxhZm4lFrSST2tpnolE", // IMPORTANT: Leave empty. The key is handled by the execution environment.
-        API_BASE_URL: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
-        get API_URL() {
-            return `${this.API_BASE_URL}?key=${this.API_KEY}`;
-        },
+        // IMPORTANT: API_KEY is REMOVED from the frontend for security.
+        // It should be handled by a backend proxy (like a Cloudflare Worker).
+        // This URL should point to your proxy.
+        API_URL: "https://your-worker-url.workers.dev", // <-- Replace with your actual Cloudflare Worker URL
         FLAGS: { en: '🇺🇸', es: '🇪🇸', pt: '🇧🇷', ru: '🇷🇺', de: '🇩🇪', fr: '🇫🇷', ja: '🇯🇵', ko: '🇰🇷', zh: '🇨🇳' },
     },
 
