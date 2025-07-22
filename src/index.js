@@ -6,7 +6,7 @@ export default {
   async fetch(request, env) {
     // ===== ① CORS 头，每次都要带 =====
     const cors = {
-      'Access-Control-Allow-Origin': '*',           // TODO: 生产环境写成 https://你的域名
+      'Access-Control-Allow-Origin': 'http://imgcaption.com/',           // TODO: 生产环境写成 https://你的域名
       'Access-Control-Allow-Methods': 'POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
@@ -26,7 +26,7 @@ export default {
 
       const url =
         `https://generativelanguage.googleapis.com/v1beta/models/` +
-        `gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+        `gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
       const resp = await fetch(url, {
         method: 'POST',
