@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- Google Analytics & Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7LYWPRFQ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E7LYWPRFQ4');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9886602787991072" crossorigin="anonymous"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title data-lang-key="pageTitle">AI 图片描述生成器 - 免费、多语言的社媒文案创作工具</title>
+    <meta name="description" data-lang-key="metaDescription" content="使用 Gemini AI 免费生成适用于社交媒体、产品介绍、博客文章的图片描述。支持中文、英文等多种语言和幽默、精准等多种风格。">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+    
+    <!-- Canonical & Hreflang links -->
+    <link rel="canonical" href="https://circlecropimage.app/generate.html">
+    <link rel="alternate" hreflang="x-default" href="https://circlecropimage.app/generate.html">
+    <link rel="alternate" hreflang="en" href="https://circlecropimage.app/generate.html?lang=en">
+    <link rel="alternate" hreflang="zh" href="https://circlecropimage.app/generate.html?lang=zh">
+
+    <!-- Schema.org for WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AI Image Caption Generator",
+      "description": "A free tool to generate multi-language, multi-style image descriptions using AI. Perfect for social media, blogs, and e-commerce.",
+      "url": "https://imgcaption.com",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any (Web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      }
+    }
+    </script>
+
+    <!-- Fonts and CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; }
+        .dropdown-menu { transition: opacity .2s ease-out, transform .2s ease-out; }
+        .drag-over { border-color: #2563eb; background-color: #eff6ff; }
+        .skeleton-text {
+            background-color: #e5e7eb;
+            border-radius: 0.25rem;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            50% { opacity: .5; }
+        }
+        /* Replicating feature list style from index.html */
+        .feature-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75rem; /* leading-relaxed */
+            color: #4b5563; /* text-gray-600 */
+        }
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2563eb; /* text-blue-600 */
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-xl font-bold text-gray-900 nav-link" data-lang-key="siteName">AI Image Caption</a>
+                </div>
+                <div class="relative">
+                    <button id="lang-switcher-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-label="Change language" aria-haspopup="true" aria-expanded="false">
+                        <span id="current-lang-flag">🇨🇳</span>
+                        <svg class="w-5 h-5 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="lang-switcher-menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden transform opacity-0 scale-95 dropdown-menu" role="menu" aria-orientation="vertical" aria-labelledby="lang-switcher-btn">
+                        <!-- Language options will be injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900" data-lang-key="mainTitle"></h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600" data-lang-key="mainIntro"></p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden ring-1 ring-gray-900/5 p-4 sm:p-6 lg:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                
+                <!-- Left Column: Image Upload and Preview -->
+                <div>
+                    <!-- Empty State: Upload Area -->
+                    <div id="upload-container" class="text-center">
+                        <div id="drop-area" role="button" tabindex="0" aria-label="Image upload area. Drag and drop or click to upload." class="border-2 border-dashed border-gray-300 rounded-xl p-8 md:p-12 cursor-pointer hover:bg-gray-100 transition-colors">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                            </svg>
+                            <p class="mt-4 text-lg text-gray-600">
+                                <span data-lang-key="uploadCTA"></span>
+                                <span class="font-semibold text-blue-600" data-lang-key="uploadClick"></span>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1" data-lang-key="uploadFormats"></p>
+                            <input type="file" id="file-input" class="hidden" accept="image/png, image/jpeg, image/gif, image/webp, image/heic">
+                        </div>
+                    </div>
+
+                    <!-- Active State: Image Preview -->
+                    <div id="preview-container" class="hidden relative w-full aspect-square">
+                        <img id="image-preview" src="" alt="Image preview" class="rounded-xl object-cover w-full h-full">
+                        <button id="reset-btn" class="absolute top-3 right-3 bg-white/70 text-gray-800 rounded-full p-2 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 backdrop-blur-sm transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Controls and Results -->
+                <div class="flex flex-col">
+                    <!-- Controls -->
+                    <div id="controls-section" class="space-y-6">
+                        <!-- Language Selection -->
+                        <div>
+                            <label for="language-select" class="block text-sm font-medium text-gray-700" data-lang-key="langLabel"></label>
+                            <select id="language-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                <!-- Options will be populated by JS -->
+                            </select>
+                        </div>
+                        <!-- Tone Selection -->
+                        <div>
+                            <label for="tone-select" class="block text-sm font-medium text-gray-700" data-lang-key="toneLabel"></label>
+                            <select id="tone-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                <!-- Options will be populated by JS -->
+                            </select>
+                        </div>
+                        <!-- Additional Prompt -->
+                        <div>
+                            <label for="extra-prompt" class="block text-sm font-medium text-gray-700" data-lang-key="extraPromptLabel"></label>
+                            <div class="mt-1 relative">
+                                <textarea id="extra-prompt" rows="3" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" maxlength="128"></textarea>
+                                <div id="char-counter" class="absolute bottom-2 right-2 text-xs text-gray-400">0 / 128</div>
+                            </div>
+                        </div>
+                        <!-- Generate Button -->
+                        <div>
+                           <button id="generate-btn" disabled class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105">
+                               <span data-lang-key="generateButton"></span>
+                           </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Spacer -->
+                    <hr class="my-6 border-gray-200">
+
+                    <!-- Results Area -->
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="text-lg font-semibold text-gray-800" data-lang-key="resultTitle"></h3>
+                        
+                        <!-- Loading State -->
+                        <div id="loading-container" class="hidden mt-4 space-y-3">
+                            <div class="h-4 w-full skeleton-text"></div>
+                            <div class="h-4 w-5/6 skeleton-text"></div>
+                            <div class="h-4 w-3/4 skeleton-text"></div>
+                            <p class="text-sm text-center text-blue-600 pt-2" data-lang-key="loadingText"></p>
+                        </div>
+
+                        <!-- Result State -->
+                        <div id="result-container" class="hidden mt-4 relative flex-grow">
+                            <div id="result-text" class="w-full h-full min-h-[150px] p-3 bg-gray-100 rounded-md text-gray-700 text-base whitespace-pre-wrap overflow-y-auto"></div>
+                            <button id="copy-btn" class="absolute top-2 right-2 bg-white text-gray-500 rounded-md p-1.5 hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-gray-100 transition">
+                                <span id="copy-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                </span>
+                                <span id="copy-success-icon" class="hidden text-green-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="error-toast" class="hidden fixed bottom-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg animate-pulse">
+                            <span id="error-message"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  START: New Informational Content Section -->
+        <div class="mt-16 sm:mt-24 max-w-4xl mx-auto">
+            <section class="py-12">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">What is the Image Caption Generator?</h2>
+                <p class="text-center text-lg text-gray-600 leading-relaxed">Image Caption Generator is a free online tool that uses AI to create compelling captions for your images. Key features include:</p>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Instant Results</h3>
+                        <p class="mt-2 text-base text-gray-600">Generate engaging captions in seconds.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">No Login Required</h3>
+                        <p class="mt-2 text-base text-gray-600">Start using the tool immediately, hassle-free.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Completely Free</h3>
+                        <p class="mt-2 text-base text-gray-600">Access advanced AI technology at no cost.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Multi-Language Support</h3>
+                        <p class="mt-2 text-base text-gray-600">Create captions in various languages to reach a global audience.</p>
+                    </div>
+                </div>
+                <p class="mt-10 text-center text-lg text-gray-600 leading-relaxed">Perfect for social media enthusiasts, bloggers, marketers, and content creators, our Image Caption Generator transforms the way you tell stories through visuals.</p>
+            </section>
+            
+            <hr class="my-8 border-gray-200">
+
+            <section class="py-12 bg-gray-100 rounded-2xl px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Why Image Captions Matter</h2>
+                <p class="text-center text-lg text-gray-600 leading-relaxed">Online image captions play a crucial role in:</p>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Enhancing Context</h3>
+                        <p class="mt-2 text-base text-gray-600">Provide essential background information for your images.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Boosting Engagement</h3>
+                        <p class="mt-2 text-base text-gray-600">Increase likes, comments, and shares on social media platforms.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Improving Accessibility</h3>
+                        <p class="mt-2 text-base text-gray-600">Make your content inclusive for all users, including those with visual impairments.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">SEO Optimization</h3>
+                        <p class="mt-2 text-base text-gray-600">Enhance your website's search engine visibility with keyword-rich captions.</p>
+                    </div>
+                </div>
+                <p class="mt-10 text-center text-lg text-gray-600 leading-relaxed">Our AI-powered tool crafts captions that resonate with your audience, making your visual content more impactful and memorable.</p>
+            </section>
+            
+            <hr class="my-8 border-gray-200">
+
+            <section class="py-12">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">How It Works</h2>
+                <ul class="space-y-4 max-w-2xl mx-auto feature-list">
+                    <li><strong>Upload Your Image:</strong> Simply drag and drop or select your image file</li>
+                    <li><strong>Choose Your Tone:</strong> Select from a variety of tones to match your brand voice or message</li>
+                    <li><strong>Add Context (Optional):</strong> Provide additional details to refine the AI's understanding of the image</li>
+                    <li><strong>Select Language:</strong> Choose from multiple languages to generate captions in your language</li>
+                    <li><strong>Generate:</strong> Let our AI analyze your image and create tailored captions</li>
+                </ul>
+                <p class="mt-8 text-center text-lg text-gray-600 leading-relaxed">Our advanced AI and computer vision technology work seamlessly to understand the nuances of your images, ensuring accurate and relevant caption generation.</p>
+            </section>
+            
+            <hr class="my-8 border-gray-200">
+
+            <section class="py-12 bg-gray-100 rounded-2xl px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Use Cases</h2>
+                 <p class="text-center text-lg text-gray-600 leading-relaxed">This Image Caption Generator is your go-to solution for:</p>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Social Media Posts</h3>
+                        <p class="mt-2 text-base text-gray-600">Create scroll-stopping captions for Instagram, Facebook, Twitter, and more.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Blog Content</h3>
+                        <p class="mt-2 text-base text-gray-600">Enhance your articles with descriptive image captions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">E-commerce</h3>
+                        <p class="mt-2 text-base text-gray-600">Boost your product listings with compelling image descriptions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Alt Text Generation</h3>
+                        <p class="mt-2 text-base text-gray-600">Improve website accessibility and SEO with detailed alt text.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Educational Materials</h3>
+                        <p class="mt-2 text-base text-gray-600">Create engaging captions for learning resources.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Filename Generation</h3>
+                        <p class="mt-2 text-base text-gray-600">Create a more descriptive and contextually appropriate filename.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <hr class="my-8 border-gray-200">
+
+            <section class="py-12">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Supercharge Your SEO with AI-Generated Captions</h2>
+                <p class="text-center text-lg text-gray-600 leading-relaxed">Harness the power of our Image Caption Generator to elevate your SEO strategy:</p>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Keyword Integration</h3>
+                        <p class="mt-2 text-base text-gray-600">Our AI seamlessly incorporates relevant keywords into your captions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Improved Discoverability</h3>
+                        <p class="mt-2 text-base text-gray-600">Make your images more visible to search engines.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Enhanced User Engagement</h3>
+                        <p class="mt-2 text-base text-gray-600">Keep visitors on your site longer with captivating image descriptions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Backlink Potential</h3>
+                        <p class="mt-2 text-base text-gray-600">Increase the likelihood of other sites linking to your content.</p>
+                    </div>
+                </div>
+                <p class="mt-10 text-center text-lg text-gray-600 leading-relaxed">By utilizing our tool, you're not just creating captions - you're building a stronger online presence.</p>
+            </section>
+
+             <hr class="my-8 border-gray-200">
+            
+            <section class="py-12 bg-gray-100 rounded-2xl px-6">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Getting Started</h2>
+                 <ul class="space-y-4 max-w-2xl mx-auto feature-list">
+                    <li>Upload your image</li>
+                    <li>Customize your preferences</li>
+                    <li>Click 'Generate Captions'</li>
+                    <li>Choose your favorite caption from multiple options and click copy to use it</li>
+                </ul>
+                <p class="mt-8 text-center text-lg text-gray-600 leading-relaxed">No account creation, no complicated setup - just instant, AI-powered image to captions.</p>
+            </section>
+
+             <hr class="my-8 border-gray-200">
+            
+             <section class="py-12">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Alternative Image Caption Generators</h2>
+                <p class="text-center text-lg text-gray-600 leading-relaxed">While our tool offers powerful capabilities, you might want to explore other options. Here's a list of alternative image caption generators:</p>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Pallyy Image Caption Generator</h3>
+                        <p class="mt-2 text-base text-gray-600">A tool for social media managers.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">Ahrefs Instagram Caption Generator</h3>
+                        <p class="mt-2 text-base text-gray-600">Focused on creating engaging Instagram captions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">RightBlogger Image Caption Generator</h3>
+                        <p class="mt-2 text-base text-gray-600">Offers advanced features and unlimited access.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-semibold text-gray-800">ThreadCreator Image Caption Generator</h3>
+                        <p class="mt-2 text-base text-gray-600">Specializes in creating captions for Twitter threads.</p>
+                    </div>
+                </div>
+                 <p class="mt-10 text-center text-lg text-gray-600 leading-relaxed">Each of these tools has its unique features and strengths. Feel free to explore them to find the one that best suits your specific needs.</p>
+            </section>
+
+        </div>
+        </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-white mt-16 border-t border-gray-200">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+             <div class="flex justify-center gap-x-6 mb-4">
+                <a href="privacy.html" class="text-sm hover:underline nav-link" data-lang-key="privacyPolicy"></a>
+                <a href="terms.html" class="text-sm hover:underline nav-link" data-lang-key="termsOfService"></a>
+                <a href="mailto:privacy@circlecropimage.app" class="text-sm hover:underline nav-link" data-lang-key="contactUs"></a>
+            </div>
+            <p>&copy; <span id="footer-year"></span> <span data-lang-key="siteName"></span>. <span data-lang-key="footerRights"></span></p>
+        </div>
+    </footer>
+
+    <script src="generate.js" type="module" defer></script>
+
+</body>
+</html>
